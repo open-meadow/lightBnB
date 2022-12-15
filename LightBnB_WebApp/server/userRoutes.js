@@ -1,5 +1,7 @@
 const bcrypt = require('bcrypt');
 
+//import create reservation helper
+
 module.exports = function(router, database) {
 
   // Create a new user
@@ -71,6 +73,8 @@ module.exports = function(router, database) {
       })
       .catch(e => res.send(e));
   });
+
+
 
   return router;
 }

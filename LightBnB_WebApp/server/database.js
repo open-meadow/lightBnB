@@ -247,4 +247,45 @@ const addProperty = function(property) {
     return result.rows[0];
   })
 }
+
+
 exports.addProperty = addProperty;
+
+const createReservation =  (reservation, guestId) => {
+  console.log("Reservation", reservation);
+
+  let queryString = `
+    INSERT INTO reservations (
+      property_id,
+      start_date,
+      end_date,
+      guest_id
+      ) VALUES (
+        $1,
+        $2,
+        $3,
+        $4
+      ) RETURNING *
+  `;
+
+  let queryParams = Object.values(reservation);
+  queryParams.push(guestId);
+
+  console.log("Query string ", queryString);
+  console.log("Query params ", queryParams);
+
+  return pool
+  .query(queryString, queryParams)
+  .then((result) => {
+    console.log(result.rows[0]);
+    return result.rows[0];
+  })
+  .catch((err) => {
+    console.log("Error message", err.message);
+  })
+
+} 
+
+exports.createReservation = createReservation;
+
+// export

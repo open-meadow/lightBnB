@@ -22,6 +22,20 @@ $(() => {
             <div class="property-listing__price">$${property.cost_per_night/100.0}/night</div>
           </footer>
         </section>
+
+        <form method="POST" action="/api/reservations/">
+          <input type="hidden" name="property_id" value="${property.id}">
+          <div class="new-reservation-form__field-wrapper">
+            <label for="new-reservation-form__start-date">Start Date</label>
+            <input name="start_date" placeholder="Start date" type="date">
+          </div>
+          <div class="new-reservation-form__field-wrapper">
+            <label for="new-reservation-form__end-date">End Date</label>
+            <input name="end_date" placeholder="End date" type="date">
+          </div>
+            <button>Make Reservation</button>
+        </form>
+
       </article>
     `
   }
